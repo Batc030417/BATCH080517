@@ -58,13 +58,14 @@ public class HDFSService extends Configured implements Tool {
 		System.out.println("CREATING METADATA");
 		Configuration conf =super.getConf();
 		FileSystem hdfs = FileSystem.get(conf);
+		hdfs.setVerifyChecksum(Boolean.FALSE);
 		//create path
 		final String inputEdgeNodeFileName = args[0]; //WordCount.txt
 		final String hdfsDestDir = args[1]; // /user/edureka
 //		convert into path
 		Path hdfsDestDirWithFileName = new Path(hdfsDestDir, inputEdgeNodeFileName);
 		
-		FSDataOutputStream fsdos = hdfs.create(hdfsDestDirWithFileName);
+		FSDataOutputStream fsdos = hdfs.create(hdfsDestDirWithFileName,Boolean.FALSE);
 		
 		//Add Data
 		//Get the input stream
