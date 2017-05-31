@@ -21,6 +21,8 @@ public class HDFSService extends Configured implements Tool {
 
 	public static void main(String[] args) 
 	{
+		
+		System.out.println("IN MAIN METHOD");
 	 //3 Steps
 		//step- 1 : Validations
 		if(args.length<2)
@@ -48,10 +50,12 @@ public class HDFSService extends Configured implements Tool {
 	@Override
 	public int run(String[] args) throws Exception 
 	{
+		System.out.println("IN RUN METHOD");
 	//File Write = Create metadata + Add data
 		//Step: 1 : Create metadata
 		//Create a Path
 		//Invoke HDFS.create(path)
+		System.out.println("CREATING METADATA");
 		Configuration conf =super.getConf();
 		FileSystem hdfs = FileSystem.get(conf);
 		//create path
@@ -64,7 +68,7 @@ public class HDFSService extends Configured implements Tool {
 		
 		//Add Data
 		//Get the input stream
-		
+		System.out.println("ADDING DATA");
 		InputStream is = new FileInputStream(inputEdgeNodeFileName);
 		
 		IOUtils.copyBytes(is, fsdos, conf, Boolean.TRUE);
