@@ -5,6 +5,8 @@ import java.util.Map;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.conf.Configured;
 import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
@@ -86,9 +88,15 @@ public class WordCountDriver extends Configured implements Tool {
 		//step-6 : Setting Mapper
 		wordCountDriver.setMapperClass(WordCountMapper.class);
 		//step-7: Setting mapper output key class and output value class
+		wordCountDriver.setMapOutputKeyClass(Text.class);
+		wordCountDriver.setMapOutputValueClass(IntWritable.class);
+		
 		//step-8 : Setting Reducer
 		wordCountDriver.setReducerClass(WordCountReducer.class);
 		//step-9: Setting reducer output key class and output value class
+		wordCountDriver.setOutputKeyClass(Text.class);
+		wordCountDriver.setOutputValueClass(IntWritable.class);
+		
 		//step-10: Trigger method
 		wordCountDriver.waitForCompletion(Boolean.TRUE);
 //		printConf(conf);
